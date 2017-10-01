@@ -10,19 +10,28 @@ namespace Parser
         Dictionary<string, double> arguments;
         Dictionary<string,string> variables;
         List<string> expression;
-        public int variablesNum;
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source">Исходная запись в польской нотации</param>
-        public Expression(List<string> source)
+        public int VariablesCount
         {
-            expression = source;
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// К
+        /// </summary>
+        /// <param name="source">строка для апрсинга</param>
+        public Expression(string source)
+        {
+            //Исходная запись в польской нотации
+            List<string> tokens = Parser.StringToTokens(source);
+            List<string> polska = Parser.TokensToPolskaInvers(tokens);
+
+            expression = polska;
             arguments = new Dictionary<string,double>();
             variables = new Dictionary<string,string>();
             double value=0.0;
             string name="";
-            foreach (string str in source)
+            foreach (string str in polska)
             {
                 //одна из констант
                 if (Parser.IsConstant(str))
@@ -57,7 +66,7 @@ namespace Parser
                 if(!arguments.ContainsKey(name))
                     arguments.Add(name, value);
             }
-            variablesNum = variables.Count;
+            VariablesCount = variables.Count;
         }
        /* public void SetVariables(List<double> values)
         {

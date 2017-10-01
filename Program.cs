@@ -14,7 +14,7 @@ namespace Parser
              expression = Console.ReadLine();
 
 
-             List<string> result = Parser.StringToTokens(expression);
+            /* List<string> result = Parser.StringToTokens(expression);
              foreach (string str in result)
              {
                  Console.WriteLine(str);
@@ -26,8 +26,9 @@ namespace Parser
                  Console.Write("{0}  ", str);
              }
 
-             func = new Expression(polska);
-             List<double> variables = new List<double>();
+             func = new Expression(polska);*/
+            func = new Expression(expression);
+            List<double> variables = new List<double>();
 
             /* Console.WriteLine();
              for (int i = 0; i < func.variablesNum; i++)
